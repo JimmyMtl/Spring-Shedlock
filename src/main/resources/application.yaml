@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/shedlocktest
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  mail:
+    username: "poc-test-rpa-uc034@outlook.com"
+    password: "glsmesabouofcaha"
+    host: "outlook.office365.com"
+    port: 993

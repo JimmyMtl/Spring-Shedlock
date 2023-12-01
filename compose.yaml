@@ -1,1 +1,40 @@
 services:
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shedlocktest
+    volumes:
+      - ./data:/var/lib/mysql
+  spring:
+    build:
+      context: .
+      dockerfile: "./docker/DockerfileSpring"
+    depends_on:
+      - mariadb
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/shedlocktest
+      SPRING_JOB_NAMES: testJob1
+  spring2:
+    build:
+      context: .
+      dockerfile: "./docker/DockerfileSpring"
+    depends_on:
+      - mariadb
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/shedlocktest
+      SPRING_JOB_NAMES: testJob2
+  spring3:
+    build:
+      context: .
+      dockerfile: "./docker/DockerfileSpring"
+    depends_on:
+      - mariadb
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/shedlocktest
+      SPRING_JOB_NAMES: testJob3
